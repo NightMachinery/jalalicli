@@ -1,0 +1,86 @@
+#+TITLE: jalalicli
+
+~jalalicli~ is a CLI frontend for [[https://github.com/yaa110/go-persian-calendar][go-persian-calendar]].
+* Installation
+#+BEGIN_example
+go get -u -v github.com/NightMachinary/jalalicli
+#+END_example
+* Usage
+#+begin_src bsh.dash :results verbatim :exports both :wrap example
+jalalicli --help
+#+end_src
+
+#+RESULTS:
+#+begin_example
+jalalicli is a CLI frontend for https://github.com/yaa110/go-persian-calendar
+
+	Usage:
+	  jalalicli today [--jalali-format=<jalali-format>]
+	  jalalicli tojalali [--gregorian-format=<gregorian-format> --jalali-format=<jalali-format>] <date>
+	  jalalicli togregorian [--gregorian-format=<gregorian-format>] <date>
+	  jalalicli -h | --help
+
+	  togregorian's input should be in a "yyyy/MM/dd" format.
+
+	Options:
+	  -j --jalali-format=<jalali-format>  Jalali format (see the readme of the backend).
+	  -g --gregorian-format=<gregorian-format>  Gregorian format (go style). [Default: 2006/01/02]
+	  -h --help  Show this screen.
+#+end_example
+
+#+begin_src bsh.dash :results verbatim :exports both :wrap example
+jalalicli today
+#+end_src
+
+#+RESULTS:
+#+begin_example
+1399/07/16
+#+end_example
+
+#+begin_src bsh.dash :results verbatim :exports both :wrap example
+jalalicli tojalali 2001/09/11
+# حملات ۱۱ سپتامبر (بیشتر در انگلیسی با ۹/۱۱ نشان داده می‌شود که «نُه، یازده» به انگلیسی «ناین ایلِوِن» خوانده می‌شود) عبارت است از سلسله‌ای از حملات انتحاری که در ۱۱ سپتامبر ۲۰۰۱، مصادف با ۲۰ شهریور ۱۳۸۰ هجری شمسی توسط گروه تروریستی القاعده به رهبری اسامه بن لادن در خاک ایالات متحده آمریکا انجام شد.
+#+end_src
+
+#+RESULTS:
+#+begin_example
+1380/06/20
+#+end_example
+
+#+begin_src bsh.dash :results verbatim :exports both :wrap example
+jalalicli togregorian 1380/06/20
+#+end_src
+
+#+RESULTS:
+#+begin_example
+2001/09/11
+#+end_example
+
+#+begin_src bsh.dash :results verbatim :exports both :wrap example
+jalalicli togregorian "$(jalalicli today)"
+date +"%Y-%m-%d"
+#+end_src
+
+#+RESULTS:
+#+begin_example
+2020/10/07
+2020-10-07
+#+end_example
+
+#+begin_src bsh.dash :results verbatim :exports both :wrap example
+jalalicli togregorian "$(jalalicli today)" -g '2006 Jan'
+#+end_src
+
+#+RESULTS:
+#+begin_example
+2020 Oct
+#+end_example
+
+#+begin_src bsh.dash :results verbatim :exports both :wrap example
+jalalicli tojalali "$(date +"%Y-%m-%d")" -g '2006-01-02' -j 'yy MMM'
+#+end_src
+
+#+RESULTS:
+#+begin_example
+99 مهر
+#+end_example
