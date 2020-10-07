@@ -84,3 +84,7 @@ jalalicli tojalali "$(date +"%Y-%m-%d")" -g '2006-01-02' -j 'yy MMM'
 #+begin_example
 99 مهر
 #+end_example
+
+* License
+
+MIT
