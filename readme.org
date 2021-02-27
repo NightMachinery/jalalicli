@@ -34,7 +34,7 @@ jalalicli today
 
 #+RESULTS:
 #+begin_example
-1399/07/16
+1399/12/09
 #+end_example
 
 #+begin_src bsh.dash :results verbatim :exports both :wrap example
@@ -63,8 +63,8 @@ date +"%Y-%m-%d"
 
 #+RESULTS:
 #+begin_example
-2020/10/07
-2020-10-07
+2021/02/27
+2021-02-27
 #+end_example
 
 #+begin_src bsh.dash :results verbatim :exports both :wrap example
@@ -73,7 +73,7 @@ jalalicli togregorian "$(jalalicli today)" -g '2006 Jan'
 
 #+RESULTS:
 #+begin_example
-2020 Oct
+2021 Feb
 #+end_example
 
 #+begin_src bsh.dash :results verbatim :exports both :wrap example
@@ -82,7 +82,27 @@ jalalicli tojalali "$(date +"%Y-%m-%d")" -g '2006-01-02' -j 'yy MMM'
 
 #+RESULTS:
 #+begin_example
-99 مهر
+99 اسفند
+#+end_example
+
+#+begin_src bsh.dash :results verbatim :exports both :wrap example
+jalalicli togregorian --gregorian-format='unix' "1380/06/20"
+#+end_src
+
+#+RESULTS:
+#+begin_example
+1000196999
+#+end_example
+
+#+begin_src bsh.dash :results verbatim :exports both :wrap example
+jalalicli tojalali --gregorian-format='unix' "1000196999"
+gdate --date='@1000196999'
+#+end_src
+
+#+RESULTS:
+#+begin_example
+1380/06/20
+Tue Sep 11 12:59:59 +0430 2001
 #+end_example
 
 * License

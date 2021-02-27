@@ -63,8 +63,16 @@ func main() {
 		pt := ptime.Now(ptime.Iran())
 		Println(pt.Format(jalaliFormat))
 	} else if tojalaliMode {
-		t, err := time.Parse(layout, date)
-		check(err)
+		var t time.Time
+		if layout != "unix" {
+			_t, err := time.Parse(layout, date)
+			check(err)
+			t = _t
+		} else {
+			i, err := strconv.ParseInt(date, 10, 64)
+			check(err)
+			t = time.Unix(i, 0)
+		}
 		pt := ptime.New(t)
 		Println(pt.Format(jalaliFormat))
 	} else if togregorianMode {
@@ -77,6 +85,10 @@ func main() {
 		check(err)
 		var pt ptime.Time = ptime.Date(year, ptime.Month(month), day, 12, 59, 59, 0, ptime.Iran())
 		t := pt.Time()
-		Println(t.Format(layout))
+		if layout != "unix" {
+			Println(t.Format(layout))
+		} else {
+			Println(t.Unix())
+		}
 	}
 }
