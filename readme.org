@@ -105,6 +105,17 @@ gdate --date='@1000196999'
 Tue Sep 11 12:59:59 +0430 2001
 #+end_example
 
+#+begin_src bsh.dash :results verbatim :exports both :wrap example
+jalalicli tojalali -j unix -g '2006-01-02' 2001-03-22
+gdate -d '@985219200'
+#+end_src
+
+#+RESULTS:
+#+begin_example
+985219200
+Thu Mar 22 04:30:00 +0430 2001
+#+end_example
+
 * License
 
 MIT

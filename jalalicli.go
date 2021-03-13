@@ -73,8 +73,12 @@ func main() {
 			check(err)
 			t = time.Unix(i, 0)
 		}
-		pt := ptime.New(t)
-		Println(pt.Format(jalaliFormat))
+		if jalaliFormat != "unix" {
+			pt := ptime.New(t)
+			Println(pt.Format(jalaliFormat))
+		} else {
+			Println(t.Unix())
+		}
 	} else if togregorianMode {
 		dateParts := strings.Split(date, "/")
 		year, err := strconv.Atoi(dateParts[0])
