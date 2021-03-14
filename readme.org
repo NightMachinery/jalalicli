@@ -15,9 +15,9 @@ jalalicli --help
 jalalicli is a CLI frontend for https://github.com/yaa110/go-persian-calendar
 
 	Usage:
-	  jalalicli today [--jalali-format=<jalali-format>]
-	  jalalicli tojalali [--gregorian-format=<gregorian-format> --jalali-format=<jalali-format>] <date>
-	  jalalicli togregorian [--gregorian-format=<gregorian-format>] <date>
+	  jalalicli today [--jalali-format=<jalali-format> --inc-year=<years> --inc-month=<monthss> --inc-day=<days>]
+	  jalalicli tojalali [--gregorian-format=<gregorian-format> --jalali-format=<jalali-format> --inc-year=<years> --inc-month=<months> --inc-day=<days>] <date>
+	  jalalicli togregorian [--gregorian-format=<gregorian-format> --inc-year=<years> --inc-month=<months> --inc-day=<days>] [<date>]
 	  jalalicli -h | --help
 
 	  togregorian's input should be in a "yyyy/MM/dd" format.
@@ -25,35 +25,60 @@ jalalicli is a CLI frontend for https://github.com/yaa110/go-persian-calendar
 	Options:
 	  -j --jalali-format=<jalali-format>  Jalali format (see the readme of the backend).
 	  -g --gregorian-format=<gregorian-format>  Gregorian format (go style). [Default: 2006/01/02]
+      -y --inc-year=<years>  Increment output's year by specified amount.
+      -m --inc-month=<months>  Increment output's month by specified amount.
+      -d --inc-day=<days>  Increment output's day by specified amount.
 	  -h --help  Show this screen.
 #+end_example
 
 #+begin_src bsh.dash :results verbatim :exports both :wrap example
 jalalicli today
+jalalicli togregorian
 #+end_src
 
 #+RESULTS:
 #+begin_example
-1399/12/09
+1399/12/24
+2021/03/14
 #+end_example
 
 #+begin_src bsh.dash :results verbatim :exports both :wrap example
 jalalicli tojalali 2001/09/11
+jalalicli tojalali 2001/09/11 --inc-month 1
+jalalicli tojalali 2001/09/11 --inc-month 2
+jalalicli tojalali 2001/09/11 --inc-month 6
+jalalicli tojalali 2001/09/11 --inc-month 11
+jalalicli tojalali 2001/09/11 --inc-year 100
+jalalicli tojalali 2001/09/11 --inc-day 11
+jalalicli tojalali 2001/09/11 --inc-day 12
+jalalicli tojalali 2001/09/11 --inc-day 12 --inc-month 1 # Notice that month has incremented first. This is an implementation detail in the underlying library.
 # حملات ۱۱ سپتامبر (بیشتر در انگلیسی با ۹/۱۱ نشان داده می‌شود که «نُه، یازده» به انگلیسی «ناین ایلِوِن» خوانده می‌شود) عبارت است از سلسله‌ای از حملات انتحاری که در ۱۱ سپتامبر ۲۰۰۱، مصادف با ۲۰ شهریور ۱۳۸۰ هجری شمسی توسط گروه تروریستی القاعده به رهبری اسامه بن لادن در خاک ایالات متحده آمریکا انجام شد.
 #+end_src
 
 #+RESULTS:
 #+begin_example
 1380/06/20
+1380/07/20
+1380/08/20
+1380/12/20
+1381/05/20
+1480/06/20
+1380/06/31
+1380/07/01
+1380/08/02
 #+end_example
 
 #+begin_src bsh.dash :results verbatim :exports both :wrap example
 jalalicli togregorian 1380/06/20
+jalalicli togregorian 1380/06/20 --inc-day 60
+jalalicli togregorian 1380/06/20 --inc-month 24
 #+end_src
 
 #+RESULTS:
 #+begin_example
 2001/09/11
+2001/11/10
+2003/09/11
 #+end_example
 
 #+begin_src bsh.dash :results verbatim :exports both :wrap example
@@ -63,8 +88,8 @@ date +"%Y-%m-%d"
 
 #+RESULTS:
 #+begin_example
-2021/02/27
-2021-02-27
+2021/03/14
+2021-03-14
 #+end_example
 
 #+begin_src bsh.dash :results verbatim :exports both :wrap example
@@ -73,7 +98,7 @@ jalalicli togregorian "$(jalalicli today)" -g '2006 Jan'
 
 #+RESULTS:
 #+begin_example
-2021 Feb
+2021 Mar
 #+end_example
 
 #+begin_src bsh.dash :results verbatim :exports both :wrap example
@@ -114,6 +139,24 @@ gdate -d '@985219200'
 #+begin_example
 985219200
 Thu Mar 22 04:30:00 +0430 2001
+#+end_example
+
+#+begin_src bsh.dash :results verbatim :exports both :wrap example
+jalalicli today --inc-year=1 --inc-month=13 --inc-day 10
+#+end_src
+
+#+RESULTS:
+#+begin_example
+1402/02/03
+#+end_example
+
+#+begin_src bsh.dash :results verbatim :exports both :wrap example
+jalalicli togregorian --inc-day 365 --inc-month -11
+#+end_src
+
+#+RESULTS:
+#+begin_example
+2021/04/14
 #+end_example
 
 * License
