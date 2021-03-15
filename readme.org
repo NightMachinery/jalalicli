@@ -21,6 +21,7 @@ jalalicli is a CLI frontend for https://github.com/yaa110/go-persian-calendar
 	  jalalicli -h | --help
 
 	  togregorian's input should be in a "yyyy/MM/dd" format.
+      Date increments are always done in Jalali. Negative numbers are supported.
 
 	Options:
 	  -j --jalali-format=<jalali-format>  Jalali format (see the readme of the backend).
@@ -38,8 +39,8 @@ jalalicli togregorian
 
 #+RESULTS:
 #+begin_example
-1399/12/24
-2021/03/14
+1399/12/25
+2021/03/15
 #+end_example
 
 #+begin_src bsh.dash :results verbatim :exports both :wrap example
@@ -77,7 +78,7 @@ jalalicli togregorian 1380/06/20 --inc-month 24
 #+RESULTS:
 #+begin_example
 2001/09/11
-2001/11/10
+2001/11/09
 2003/09/11
 #+end_example
 
@@ -88,8 +89,8 @@ date +"%Y-%m-%d"
 
 #+RESULTS:
 #+begin_example
-2021/03/14
-2021-03-14
+2021/03/15
+2021-03-15
 #+end_example
 
 #+begin_src bsh.dash :results verbatim :exports both :wrap example
@@ -147,7 +148,7 @@ jalalicli today --inc-year=1 --inc-month=13 --inc-day 10
 
 #+RESULTS:
 #+begin_example
-1402/02/03
+1402/02/04
 #+end_example
 
 #+begin_src bsh.dash :results verbatim :exports both :wrap example
@@ -156,7 +157,7 @@ jalalicli togregorian --inc-day 365 --inc-month -11
 
 #+RESULTS:
 #+begin_example
-2021/04/14
+2021/04/07
 #+end_example
 
 * License
