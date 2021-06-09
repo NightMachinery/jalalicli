@@ -81,7 +81,7 @@ func main() {
 
 	if todayMode {
 		// Get a new instance of ptime.Time representing the current time
-		pt := ptime.Now(ptime.Iran())
+		pt := ptime.Now()
 		pt = pt.AddDate(incYear, incMonth, incDay)
 		if jalaliFormat != "unix" {
 			Println(pt.Format(jalaliFormat))
@@ -123,7 +123,7 @@ func main() {
 			check(err)
 			pt = ptime.Date(year, ptime.Month(month), day, 12, 59, 59, 0, ptime.Iran())
 		} else {
-			pt = ptime.Now(ptime.Iran())
+			pt = ptime.Now()
 		}
 		pt = pt.AddDate(incYear, incMonth, incDay)
 		t := pt.Time()
