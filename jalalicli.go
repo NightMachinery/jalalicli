@@ -122,6 +122,8 @@ func main() {
 			day, err := strconv.Atoi(dateParts[2])
 			check(err)
 			pt = ptime.Date(year, ptime.Month(month), day, 12, 59, 59, 0, ptime.Iran())
+			// equivalent to '09:29:59' in UTC
+			// This value is being used by [agfi:h-unix-allday-p]
 		} else {
 			pt = ptime.Now()
 		}
