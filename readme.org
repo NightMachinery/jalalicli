@@ -3,8 +3,9 @@
 ~jalalicli~ is a CLI frontend for [[https://github.com/yaa110/go-persian-calendar][go-persian-calendar]].
 * Installation
 #+BEGIN_example
-go get -u -v github.com/NightMachinary/jalalicli
+go install -v 'github.com/NightMachinary/jalalicli@latest'
 #+END_example
+
 * Usage
 #+begin_src bsh.dash :results verbatim :exports both :wrap example
 jalalicli --help
